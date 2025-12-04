@@ -8,3 +8,5 @@ repository = "https://github.com/fb0sh/portal-rs"
 authors = ["fb0sh <fb0sh@outlook.com>"]
 
 [dependencies]
+get_if_addrs = "0.5"
+anyhow = "1.0"
