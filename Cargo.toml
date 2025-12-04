@@ -2,5 +2,9 @@
 name = "portal-rs"
 version = "0.1.0"
 edition = "2024"
+description = "A Portal you imagined"
+license = "MIT"
+repository = "https://github.com/fb0sh/portal-rs"
+authors = ["fb0sh <fb0sh@outlook.com>"]
 
 [dependencies]
