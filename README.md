@@ -3,7 +3,7 @@ web / master
 
 agent / node
 
-./agent -a ip:port -i task1 -passwd
+./agent -a ip:port -i task1 -p pass
 
 
 default tls

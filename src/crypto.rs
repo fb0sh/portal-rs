@@ -24,11 +24,9 @@ use hkdf::Hkdf;
 use hmac::{Hmac, Mac};
 use rand::RngCore;
 use serde::{Deserialize, Serialize};
-use sha2::{Digest, Sha256};
+use sha2::Sha256;
 use std::error::Error;
 use std::fmt;
-
-type HmacSha256 = Hmac<Sha256>;
 
 #[derive(Debug)]
 pub enum PortalCryptoError {
@@ -158,7 +156,7 @@ impl<'a> PortalCrypto<'a> {
         nonce: &[u8; 12],
         mac_key: &[u8; 32],
     ) -> Result<[u8; 32], PortalCryptoError> {
-        let mut mac = <HmacSha256 as KeyInit>::new_from_slice(mac_key)
+        let mut mac = <Hmac<Sha256> as KeyInit>::new_from_slice(mac_key)
             .map_err(|_| PortalCryptoError::InvalidInput)?;
 
         mac.update(portal_id);

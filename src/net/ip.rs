@@ -1,8 +1,12 @@
-use std::net::{IpAddr, Ipv4Addr};
+use std::{
+    net::{IpAddr, Ipv4Addr},
+    time::Duration,
+};
 
 use anyhow::Result;
 use get_if_addrs::{IfAddr, Interface, get_if_addrs};
 use serde::{Deserialize, Serialize};
+use tokio::{net::TcpStream, time::timeout};
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct NetworkInfo {
@@ -79,6 +83,14 @@ pub fn get_network_info() -> Result<Vec<NetworkInfo>> {
     }
 
     Ok(network_info_list)
+}
+
+/// addr: ip:port
+pub async fn portal_ping(addr: &str) -> bool {
+    match timeout(Duration::from_secs(30), TcpStream::connect(&addr)).await {
+        Ok(Ok(_stream)) => true,
+        _ => false,
+    }
 }
 
 #[cfg(test)]

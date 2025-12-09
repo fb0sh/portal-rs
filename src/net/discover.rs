@@ -3,11 +3,12 @@ use std::{
     time::Duration,
 };
 
+use super::ip::{NetworkInfo, get_network_info};
+use crate::prelude::{PortalCrypto, PortalCryptoError};
 use anyhow::Result;
 use sha2::{Digest, Sha256};
 use tokio::{net::UdpSocket, time::timeout};
 
-use crate::utils::{NetworkInfo, PortalCrypto, get_network_info};
 pub async fn discover() -> Result<()> {
     // 绑定到指定网卡IP和端口
     let local_ip = Ipv4Addr::new(0, 0, 0, 0);
