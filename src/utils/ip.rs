@@ -2,8 +2,9 @@ use std::net::{IpAddr, Ipv4Addr};
 
 use anyhow::Result;
 use get_if_addrs::{IfAddr, Interface, get_if_addrs};
+use serde::{Deserialize, Serialize};
 
-#[derive(Debug)]
+#[derive(Debug, Serialize, Deserialize)]
 pub struct NetworkInfo {
     pub name: String,
     pub ip: IpAddr,
